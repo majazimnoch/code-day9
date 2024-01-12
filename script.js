@@ -16,9 +16,16 @@ let getArticle = () => {
       if (randomArticle) {
         description.innerText = randomArticle.description;
         author.innerText = randomArticle.author;
-        date.innerText = randomArticle.publishedAt;
+
+        const formatDate = new Date(randomArticle.publishedAt).toLocaleDateString('en-US', {
+            month: 'numeric',
+            day: 'numeric',
+            year: 'numeric'
+        });
+
+        date.innerText = formatDate;
       } else {
-        console.log("No articles found.");
+        console.log("No articles found. Try again.");
       }
     })
     .catch((error) => console.error("Error fetching data:", error));
